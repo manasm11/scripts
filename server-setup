@@ -33,4 +33,6 @@ ufw delete allow 22
 
 systemctl restart sshd
 cd /home/$USERNAME
+echo "Remember to login with the command:"
+echo "ssh ${USRNAME}@<ip-address> -p ${SSH_PORT}"
 su $USERNAME
