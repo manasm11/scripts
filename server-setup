@@ -31,3 +31,4 @@ ufw allow $SSH_PORT/tcp
 ufw delete allow 22
 
 systemctl restart sshd
+su $USERNAME
