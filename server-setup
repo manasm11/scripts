@@ -15,7 +15,7 @@ chown --recursive $USERNAME /home/${USERNAME}.ssh/
 
 sed -i "/Port / {
 s/^#//
-s/ 22/ #{SSH_PORT}/
+s/ 22/ ${SSH_PORT}/
 }" /etc/ssh/sshd_config
 
 sed -i "/PermitRootLogin / {
