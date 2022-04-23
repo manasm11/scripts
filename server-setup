@@ -6,7 +6,7 @@ read USERNAME
 printf "Enter SSH port: "
 read SSH_PORT
 
-adduser $USERNAME
+adduser --gecos "" $USERNAME
 adduser $USERNAME sudo
 
 mkdir /home/$USERNAME/.ssh
