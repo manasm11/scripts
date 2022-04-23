@@ -1,8 +1,10 @@
 #!/bin/bash
 set +x
 
-read -p "Enter username: " USERNAME
-read -p "Enter SSH port: " SSH_PORT
+printf  "Enter username: "
+read USERNAME
+printf "Enter SSH port: "
+read SSH_PORT
 
 adduser $USERNAME
 adduser $USERNAME sudo
