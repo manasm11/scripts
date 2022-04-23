@@ -1,0 +1,33 @@
+#!/bin/bash
+set +x
+
+IS_USER_EXISTS=[ "$(ls -A /home)" ]
+
+$IS_USER_EXISTS && echo "User exists" || read -p "Enter username: " USERNAME
+read -p "Enter SSH port: " SSH_PORT
+
+$IS_USER_EXISTS || adduser $USERNAME
+$IS_USER_EXISTS || adduser $USERNAME sudo
+
+mkdir /home/$USERNAME/.ssh
+cp ~/.ssh/authorized_keys /home/$USERNAME/.ssh/
+
+sed -i "/Port / {
+s/^#//
+s/ 22/ #{SSH_PORT}/
+}" /etc/ssh/sshd_config
+
+sed -i "/PermitRootLogin / {
+s/^#//
+s/ yes/ no/
+}" /etc/ssh/sshd_config
+
+sed -i "/PasswordAuthentication / {
+s/^#//
+s/ yes/ no/
+}" /etc/ssh/sshd_config
+
+ufw allow $SSH_PORT/tcp
+ufw delete allow 22
+
+systemctl restart sshd
