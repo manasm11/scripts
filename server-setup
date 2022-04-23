@@ -11,7 +11,7 @@ adduser $USERNAME sudo
 
 mkdir /home/$USERNAME/.ssh
 cp ~/.ssh/authorized_keys /home/$USERNAME/.ssh/
-chown --recursive $USERNAME /home/${USERNAME}.ssh/
+chown --recursive $USERNAME /home/${USERNAME}/.ssh/
 
 sed -i "/Port / {
 s/^#//
